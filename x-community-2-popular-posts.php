@@ -12,12 +12,15 @@ if( $file_headers[0] == 'HTTP/1.1 404 Not Found') {
 if( $widget_config['title'] ) $title = $widget_config['title'];
 else $title = "조회수가 많은 글";
 
+if( $widget_config['no'] ) $limit = $widget_config['no'];
+else $limit = 10;
+
 $posts = g::posts(
 	array(
 		'domain'=>etc::domain(),
 		'wr_datetime'=> '>' . g::datetime( time() - ONEDAY ),
-		'order by'=>'wr_hit DESC',
-		'limit'=>10
+		'order by'=>' wr_hit DESC',
+		'limit'=> $limit
 	)
 );
 ?>
